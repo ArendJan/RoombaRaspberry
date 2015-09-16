@@ -28,6 +28,7 @@ namespace RaspberryPi
     /// </summary>
     public sealed partial class data : Page
     {
+        //Some global variables
         public String IP = "";
         public List<String> dayslookup = new List<string>() { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Fryday", "Saturday" };
         public Boolean AUTO = true;
@@ -47,8 +48,8 @@ namespace RaspberryPi
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
 
-            ScheduledList = new List<SEvent> { };
-            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("ScheduledList"))
+            ScheduledList = new List<SEvent> { };                                                                           //List of Scheduled events(cleans)
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("ScheduledList"))                                  //Get the scheduled events from the storage and deserialize it
             {
                 String serialize = ApplicationData.Current.LocalSettings.Values["ScheduledList"].ToString();
                 XmlSerializer xml = new XmlSerializer(ScheduledList.GetType());
@@ -58,29 +59,29 @@ namespace RaspberryPi
             }
             else
             {
-                ScheduledList.Add(new SEvent() { Day = 0, hour = 12, minutes = 00 });
+                ScheduledList.Add(new SEvent() { Day = 0, hour = 12, minutes = 00 });       //When there isn't a event scheduled/first boot, it adds 1
                 XmlSerializer xml = new XmlSerializer(ScheduledList.GetType());
                 StringWriter textWriter = new StringWriter();
                 xml.Serialize(textWriter, ScheduledList);
                 String serialized = textWriter.ToString();
-                ApplicationData.Current.LocalSettings.Values["ScheduledList"] = serialized;
+                ApplicationData.Current.LocalSettings.Values["ScheduledList"] = serialized; //Save the list.
             }
-            foreach (SEvent even in ScheduledList)
+            foreach (SEvent even in ScheduledList)  //Add every item to listbox
             {
                 this.listBox.Items.Add(dayslookup[even.Day] + " " + even.hour + ":" + even.minutes);
 
             }
 
-            IP = e.Parameter.ToString();
+            IP = e.Parameter.ToString();            //Parameter send when started from MainPage.xaml.cs
             this.StatusBox.Text = "Connected!";
             this.AutoSwitch.IsOn = true;
             day = DateTime.Today.DayOfWeek.ToString();
-            //List<SEvent> ScheduledList = new List<SEvent>();
+            
             int CHour = (int)System.DateTime.Now.Hour;
             int CMin = (int)System.DateTime.Now.Minute;
-            this.StatusBox.Text = CHour.ToString() + ":" + CMin.ToString();
-            // S
-            timer = new System.Threading.Timer(TimerTick, null, TimeSpan.Zero, new TimeSpan(0, 0, 0, 1));
+            //this.StatusBox.Text = CHour.ToString() + ":" + CMin.ToString(); //Use when checking the time
+            
+            timer = new System.Threading.Timer(TimerTick, null, TimeSpan.Zero, new TimeSpan(0, 0, 0, 1));   //Every 20 seconds check the list.
 
             //int lastMinute = 1;
 

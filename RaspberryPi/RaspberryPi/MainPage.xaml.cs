@@ -24,11 +24,11 @@ namespace RaspberryPi
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public MainPage()
+        public MainPage()  //When started
         {
             this.InitializeComponent();
             this.IPaddres.Text = "http://192.168.2.9/"; // fill in your default.
-            connect_Click(new object(), new RoutedEventArgs());
+            connect_Click(new object(), new RoutedEventArgs()); //To autocheck/login, usefull when headless or when as startup
             
         }
         
@@ -40,11 +40,11 @@ namespace RaspberryPi
             try
             {
                 this.HelloMessage.Text = "CHECKING...";
-                String IP = this.IPaddres.Text;
-                String requestURL = "UP";
+                String IP = this.IPaddres.Text;                                     //Get IP address from field
+                String requestURL = "UP";                                           //The URL is: http://IP/UP
                 HttpClient z = new HttpClient();
                 z.BaseAddress = new Uri(IP);
-                HttpResponseMessage response = await z.GetAsync(requestURL);
+                HttpResponseMessage response = await z.GetAsync(requestURL);        //Request page
                 
                 if (response.IsSuccessStatusCode)
                 {
@@ -52,14 +52,14 @@ namespace RaspberryPi
                     UP = UP.Replace(System.Environment.NewLine, "");
                     this.HelloMessage.Text = UP.Length.ToString();
 
-                    //this.HelloMessage.Text = String.Equals('y', UP).ToString();
-                    if (String.Equals("y", UP))
+                    
+                    if (String.Equals("y", UP))                                     //When the content is "y", it is succesfull
                     {
                         this.HelloMessage.Text = "Connected!";
 
                        Frame rootFrame = Window.Current.Content as Frame;
                         
-                        rootFrame.Navigate(typeof(data), IP);
+                        rootFrame.Navigate(typeof(data), IP);                   // Go to next view.
                         
                     }
                     else
