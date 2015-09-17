@@ -24,33 +24,34 @@ namespace RaspberryPi
         public Add()
         {
             this.InitializeComponent();
-            foreach (String day in dayslookup)
+            foreach (String day in dayslookup)   //Add the Days to the dropdown box
             {
                 this.DayPicker.Items.Add(day);
             }
-            this.DayPicker.SelectedIndex = 0;
+            this.DayPicker.SelectedIndex = 0;       //Select 'Sunday'
         }
 
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            String dag = this.DayPicker.SelectedItem.ToString();
+            String dag = this.DayPicker.SelectedItem.ToString();    //Get the day ,eg "Sunday"
             int daynum = 0;
             for (int i = 0; i < dayslookup.Count; i++)
             {
-                if (dayslookup[i].Contains(dag))
+                if (dayslookup[i].Contains(dag))            //Search for the string in the dayslookup list.
                 {
                     daynum = i;
                 }
             }
 
-            ApplicationData.Current.LocalSettings.Values["NewDay"] = daynum;
+            ApplicationData.Current.LocalSettings.Values["NewDay"] = daynum;                //Save the Event to the storage.
             ApplicationData.Current.LocalSettings.Values["NewHour"] = this.Hour.Text;
             ApplicationData.Current.LocalSettings.Values["NewMinute"] = this.Minute.Text;
         }
 
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
+            //Do nothing
         }
     }
 }
