@@ -16,9 +16,9 @@ SoftwareSerial Roomba(2, 3); //RX, TX, #2 can handle interrupts on uno.
 void setup() {
    //Serial.begin(115200);
   Roomba.begin(112500);      // initialize serial communication
-  Roomba.write(128);
+  Roomba.write(128);       //Start the IO interface
 
-  Roomba.write(131);
+  Roomba.write(131);       //Safe mode.
 
 
   pinMode(13, OUTPUT);      // set the LED pin mode
