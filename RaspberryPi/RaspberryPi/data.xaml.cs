@@ -281,17 +281,18 @@ namespace RaspberryPi
 
             ContentDialog add = new Add();
             
-            ContentDialogResult res = await add.ShowAsync();
-            if (res.ToString().Equals("Primary"))
+            ContentDialogResult res = await add.ShowAsync(); //Start the dialog with the date/time select boxes
+            if (res.ToString().Equals("Primary"))       //When pressed the left button:
             {
+                //Get the saved date/time from the storage and create a new SEvent object, add it to Scheduledlist.
                 ScheduledList.Add(new SEvent() { Day = Int32.Parse(ApplicationData.Current.LocalSettings.Values["NewDay"].ToString()), hour = Int32.Parse(ApplicationData.Current.LocalSettings.Values["NewHour"].ToString()), minutes = Int32.Parse(ApplicationData.Current.LocalSettings.Values["NewMinute"].ToString()) });
-                XmlSerializer xml = new XmlSerializer(ScheduledList.GetType());
+                XmlSerializer xml = new XmlSerializer(ScheduledList.GetType());//Serialize  it
                 StringWriter textWriter = new StringWriter();
                 xml.Serialize(textWriter, ScheduledList);
                 String serialized = textWriter.ToString();
-                ApplicationData.Current.LocalSettings.Values["ScheduledList"] = serialized;
+                ApplicationData.Current.LocalSettings.Values["ScheduledList"] = serialized;     //Save it.
                 this.listBox.Items.Clear();
-                foreach (SEvent even in ScheduledList)
+                foreach (SEvent even in ScheduledList)      //update the box.
                 {
                     this.listBox.Items.Add(dayslookup[even.Day] + " " + even.hour + ":" + even.minutes);
 
