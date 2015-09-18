@@ -37,6 +37,7 @@ namespace RaspberryPi
         public List<SEvent> ScheduledList;
         private String day;
         public bool CurrentlyWorking = false;
+        public bool Docking = false;
 
         public data()
         {
@@ -94,8 +95,8 @@ namespace RaspberryPi
             if (x <= 20)
             {
                 x = 0;
-                int CleaningTime = -10; //The time needed for 1 clean, with a minus, this feature is for roomba's which don't autoDock after a specific amount of time, or the battery dies before that.
-                int Dock2 = 5; //The time needed for appr docking.
+                int CleaningTime = -3; //The time needed for 1 clean, with a minus, this feature is for roomba's which don't autoDock after a specific amount of time, or the battery dies before that.
+                int Dock2 = 2; //The time needed for appr docking.
                 /*
                 Normal use:
                 Checking time --> time is right --> cleaning --> stop and go seek dock after CleaningTime minutes (twice dock command)
@@ -123,9 +124,10 @@ namespace RaspberryPi
                 foreach (SEvent e in ScheduledList)
                 {
                     
-                    if (e.Day == CDay && e.hour == CHour && e.minutes == CMin)
+                    if (e.Day == CDay && e.hour == CHour && e.minutes == CMin && CurrentlyWorking == false)
                     {
                         CurrentlyWorking = true;
+                        Docking = false;
                          await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                         {
 
@@ -151,8 +153,10 @@ namespace RaspberryPi
 
                         }
                     }
-                    else if (e.Day == DDay && e.hour == DHour && e.minutes == DMin)
+                    else if (e.Day == DDay && e.hour == DHour && e.minutes == DMin && CurrentlyWorking)
                     {
+                        Docking = true;
+                        CurrentlyWorking = false;
                         await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                         {
 
@@ -181,8 +185,11 @@ namespace RaspberryPi
                             }
                         }
                     }
-                    else if (e.Day == D2Day && e.hour == D2Hour && e.minutes == D2Min)
+                    else if (e.Day == D2Day && e.hour == D2Hour && e.minutes == D2Min && Docking)
                     {
+                        CurrentlyWorking = false;
+                        Docking = false;
+
                         await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                         {
 
@@ -281,18 +288,17 @@ namespace RaspberryPi
 
             ContentDialog add = new Add();
             
-            ContentDialogResult res = await add.ShowAsync(); //Start the dialog with the date/time select boxes
-            if (res.ToString().Equals("Primary"))       //When pressed the left button:
+            ContentDialogResult res = await add.ShowAsync();
+            if (res.ToString().Equals("Primary"))
             {
-                //Get the saved date/time from the storage and create a new SEvent object, add it to Scheduledlist.
                 ScheduledList.Add(new SEvent() { Day = Int32.Parse(ApplicationData.Current.LocalSettings.Values["NewDay"].ToString()), hour = Int32.Parse(ApplicationData.Current.LocalSettings.Values["NewHour"].ToString()), minutes = Int32.Parse(ApplicationData.Current.LocalSettings.Values["NewMinute"].ToString()) });
-                XmlSerializer xml = new XmlSerializer(ScheduledList.GetType());//Serialize  it
+                XmlSerializer xml = new XmlSerializer(ScheduledList.GetType());
                 StringWriter textWriter = new StringWriter();
                 xml.Serialize(textWriter, ScheduledList);
                 String serialized = textWriter.ToString();
-                ApplicationData.Current.LocalSettings.Values["ScheduledList"] = serialized;     //Save it.
+                ApplicationData.Current.LocalSettings.Values["ScheduledList"] = serialized;
                 this.listBox.Items.Clear();
-                foreach (SEvent even in ScheduledList)      //update the box.
+                foreach (SEvent even in ScheduledList)
                 {
                     this.listBox.Items.Add(dayslookup[even.Day] + " " + even.hour + ":" + even.minutes);
 

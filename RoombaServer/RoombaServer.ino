@@ -5,7 +5,7 @@
 #include <SoftwareSerial.h>
 
 char ssid[] = "van_Hilten";      //  your network SSID (name)
-char pass[] = "____YOUR_PASSWORD___";   // your network password
+char pass[] = "Pinksteren1";   // your network password
 int keyIndex = 0;// your network key Index number (needed only for WEP)
 bool extra = false;
 String extraString = "";

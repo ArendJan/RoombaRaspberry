@@ -22,7 +22,7 @@
     <AppXManifest Include="C:\Users\user\Documents\Visual Studio 2015\Projects\RaspberryPi\RaspberryPi\bin\x64\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2015-09-13T14:09:08.366</Modified>
+      <Modified>2015-09-18T13:20:57.719</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
@@ -64,7 +64,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\user\Documents\Visual Studio 2015\Projects\RaspberryPi\RaspberryPi\bin\x64\Debug\Core\entrypoint\RaspberryPi.exe">
       <PackagePath>entrypoint\RaspberryPi.exe</PackagePath>
-      <Modified>2015-09-13T14:09:07.942</Modified>
+      <Modified>2015-09-18T13:20:57.319</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\user\Documents\Visual Studio 2015\Projects\RaspberryPi\RaspberryPi\bin\x64\Debug\Core\Microsoft.ApplicationInsights.dll">
       <PackagePath>Microsoft.ApplicationInsights.dll</PackagePath>
@@ -96,7 +96,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\user\Documents\Visual Studio 2015\Projects\RaspberryPi\RaspberryPi\bin\x64\Debug\Core\RaspberryPi.exe">
       <PackagePath>RaspberryPi.exe</PackagePath>
-      <Modified>2015-09-13T14:09:08.365</Modified>
+      <Modified>2015-09-18T13:20:57.719</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\user\Documents\Visual Studio 2015\Projects\RaspberryPi\RaspberryPi\bin\x64\Debug\Core\RaspberryPi.xr.xml">
       <PackagePath>RaspberryPi.xr.xml</PackagePath>

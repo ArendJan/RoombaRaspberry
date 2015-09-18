@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 namespace RaspberryPi
 {
     
-    public class SEvent
+    public class SEvent         //Class used for storing the scheduled dates
     {
         
         

@@ -1,0 +1,9 @@
+/ignoreAccessChecks
+/metadataFile "C:\Users\user\Documents\GitHub\RoombaRaspberry\RaspberryPi\RaspberryPi\obj\ARM\Release\ilc\intermediate\ILTransformed\RaspberryPi.metadata"
+/reflectionMetadataAssemblyName "System.Private.CoreLib"
+/o
+/sharedGenerics
+/ilmergeinfo "C:\Users\user\Documents\GitHub\RoombaRaspberry\RaspberryPi\RaspberryPi\obj\ARM\Release\ilc\intermediate\ILTransformed\RaspberryPi.csv"
+/sharedGenericsMode StandardHeuristics
+/in "C:\Users\user\Documents\GitHub\RoombaRaspberry\RaspberryPi\RaspberryPi\obj\ARM\Release\ilc\intermediate\ILTransformed\RaspberryPi.ilexe"
+/out "C:\Users\user\Documents\GitHub\RoombaRaspberry\RaspberryPi\RaspberryPi\obj\ARM\Release\ilc\intermediate\MDIL\RaspberryPi.mdilexe"

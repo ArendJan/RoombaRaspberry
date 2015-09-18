@@ -231,7 +231,7 @@ namespace Microsoft.Xml.Serialization.GeneratedAssembly {
             get {
                 if (readMethods == null) {
                     System.Collections.IDictionary _tmp = new System.Collections.Generic.Dictionary<string, string>();
-                    _tmp[@"System.Collections.Generic.List`1[[RaspberryPi.SEvent, RaspberryPi, Version=1.0.0.36921, Culture=neutral, PublicKeyToken=null]]::"] = @"Read3_ArrayOfSEvent";
+                    _tmp[@"System.Collections.Generic.List`1[[RaspberryPi.SEvent, RaspberryPi, Version=1.0.0.33303, Culture=neutral, PublicKeyToken=null]]::"] = @"Read3_ArrayOfSEvent";
                     if (readMethods == null) readMethods = _tmp;
                 }
                 return readMethods;
@@ -242,7 +242,7 @@ namespace Microsoft.Xml.Serialization.GeneratedAssembly {
             get {
                 if (writeMethods == null) {
                     System.Collections.IDictionary _tmp = new System.Collections.Generic.Dictionary<string, string>();
-                    _tmp[@"System.Collections.Generic.List`1[[RaspberryPi.SEvent, RaspberryPi, Version=1.0.0.36921, Culture=neutral, PublicKeyToken=null]]::"] = @"Write3_ArrayOfSEvent";
+                    _tmp[@"System.Collections.Generic.List`1[[RaspberryPi.SEvent, RaspberryPi, Version=1.0.0.33303, Culture=neutral, PublicKeyToken=null]]::"] = @"Write3_ArrayOfSEvent";
                     if (writeMethods == null) writeMethods = _tmp;
                 }
                 return writeMethods;
@@ -253,7 +253,7 @@ namespace Microsoft.Xml.Serialization.GeneratedAssembly {
             get {
                 if (typedSerializers == null) {
                     System.Collections.IDictionary _tmp = new System.Collections.Generic.Dictionary<string, System.Xml.Serialization.XmlSerializer>();
-                    _tmp.Add(@"System.Collections.Generic.List`1[[RaspberryPi.SEvent, RaspberryPi, Version=1.0.0.36921, Culture=neutral, PublicKeyToken=null]]::", new ListOfSEventSerializer());
+                    _tmp.Add(@"System.Collections.Generic.List`1[[RaspberryPi.SEvent, RaspberryPi, Version=1.0.0.33303, Culture=neutral, PublicKeyToken=null]]::", new ListOfSEventSerializer());
                     if (typedSerializers == null) typedSerializers = _tmp;
                 }
                 return typedSerializers;
